@@ -5,6 +5,9 @@ class character:
     energy=0
     normal_attack_damage=0
     normal_attack_type=''
+    element=''
+    weapon_type=''
+    origin=''
     elemental_skill_damage=0
     elemental_skill_type=''
     elemental_burst_damage=0
@@ -54,6 +57,9 @@ class diluc(character):
     max_energy=3
     hp=10
     energy=0
+    element='pyro'
+    weapon_type='claymore'
+    origin='mondstadt'
     normal_attack_damage=2
     normal_attack_type='physical'
     elemental_skill_damage=3
@@ -82,6 +88,9 @@ class sucrose(character):
     max_energy=2
     hp=10
     energy=0
+    element='anemo'
+    weapon_type='catalyst'
+    origin='mondstadt'
     normal_attack_damage=1
     normal_attack_type='anemo'
     elemental_skill_damage=3
@@ -103,6 +112,9 @@ class kaeya(character):
     max_energy=2
     hp=10
     energy=0
+    element='cyro'
+    weapon_type='sword'
+    origin='mondstadt'
     normal_attack_damage=2
     normal_attack_type='physical'
     elemental_skill_damage=3

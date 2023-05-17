@@ -12,6 +12,7 @@ class player:
     front=0
     dice_number=8
     dice_list=[]
+    priority_element=[]
     def add_character(self,char):
         if len(self.character_list)>=3:
             return
@@ -26,15 +27,27 @@ class player:
             if self.card_list.count(char)>=2:
                 return
             else:
-                eval('self.card_list.append(card.'+char+'())')
+                eval('self.card_list.append(cards.'+char+'())')
     def clear_card(self):
         self.card_list=[]
     def draw_card(self,number):
         pass
-
-def begin_roll():
-    
-    pass
+    def set_priority(self):
+        tmp=[]
+        for a in self.character_list:
+            tmp.append(a.element)
+        self.priority_element=list(set(tmp))
+        if len(self.priority_element)==2:
+            if tmp.count(self.priority_element[0])==2:
+                pass
+            else:
+                self.priority_element.reverse()
+    def dice_sort(self):
+        tmp=self.dice_list
+        
+        self.dice_list=tmp
+        del tmp
+        pass
 
 def default_character(player1):
     if isinstance(player1,player):
@@ -61,11 +74,19 @@ def gameloop(a,player1,player2):
     begin_phase(players)
     pass
 def game_begin(players):
-    #draw 5 cards(after) and roll the dices
-    
+    players[0].set_priority()
+    players[1].set_priority()
+    #draw 5 cards(after)
     pass
 def begin_phase(players):
-    
+    players[0].dice_list=data.roll_dice(8)
+    players[1].dice_list=data.roll_dice(8)
+    players[0].dice_sort()
+    players[1].dice_sort()
+    print('dice of player1: ',end='')
+    print(players[0].dice_list)
+    print('dice of player2: ',end='')
+    print(players[1].dice_list)
     pass
 def action_phase_begin():
     pass
@@ -79,7 +100,5 @@ player1=player()
 default_character(player1)
 player2=player()
 default_character(player2)
-print(player1.character_list[0].elemental_skill())
-print(player1.character_list[0].elemental_skill())
-print(player1.character_list[0].elemental_skill())
-print(player1.character_list[0].elemental_skill())
+gameloop(0,player1,player2)
+print(data.dice_kind)
