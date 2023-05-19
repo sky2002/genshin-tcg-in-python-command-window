@@ -3,6 +3,11 @@ class summon:
     usage=0
     element='physical'
     damage=0
+    def __init__(self):
+        self.max_usage=0
+        self.usage=0
+        self.element='physical'
+        self.damage=0
     def effect(self):
         pass
     def get_usage(self):

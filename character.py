@@ -12,9 +12,21 @@ class character:
     elemental_skill_type=''
     elemental_burst_damage=0
     elemental_burst_type=''
-    def _init_ (self,hp,energy):
+    
+    def __init__(self):
+        self.max_hp=0
+        self.max_energy=0
         self.hp=0
         self.energy=0
+        self.normal_attack_damage=0
+        self.normal_attack_type=''
+        self.element=''
+        self.weapon_type=''
+        self.origin=''
+        self.elemental_skill_damage=0
+        self.elemental_skill_type=''
+        self.elemental_burst_damage=0
+        self.elemental_burst_type=''
     
     def set_hp(self,hp):
         self.hp=hp

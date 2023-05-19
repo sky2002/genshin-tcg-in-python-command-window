@@ -1,6 +1,9 @@
 class buff:
     time_remain=0
     time_max=0
+    def __init__(self):
+        self.time_remain=0
+        self.time_max=0
     def set_time(self,time):
         if time<=self.time_max:
             self.time_remain=time

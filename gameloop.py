@@ -13,9 +13,20 @@ class player:
     dice_number=8
     dice_list=[]
     priority_element=[]
+    unp_element=[]
+    def __init__(self):
+        self.character_list=[]
+        self.card_list=[]
+        self.hold_card_list=[]
+        self.card_pile=[]
+        self.front=0
+        self.dice_number=8
+        self.dice_list=[]
+        self.priority_element=[]
+        self.unp_element=[]
     def add_character(self,char):
-        if len(self.character_list)>=3:
-            return
+        #if len(self.character_list)>=3:
+            #return
         if data.check_character(char):
             eval('self.character_list.append(character.'+char+'())')
     def clear_character(self):
@@ -42,18 +53,43 @@ class player:
                 pass
             else:
                 self.priority_element.reverse()
+    def set_unp(self):
+        for ele in data.dice_kind:
+            if ele not in self.priority_element:
+                self.unp_element.append(ele)
+        self.unp_element.remove('omni')
     def dice_sort(self):
-        tmp=self.dice_list
         
+        tmp=['omni']
+        omninum=self.dice_list.count('omni')
+        pyronum=self.dice_list.count('pyro')
+        cyronum=self.dice_list.count('cyro')
+        anemonum=self.dice_list.count('anemo')
+        hydronum=self.dice_list.count('hydro')
+        dendronum=self.dice_list.count('dendro')
+        electronum=self.dice_list.count('electro')
+        geonum=self.dice_list.count('geo')
+        tmp*=omninum
+        for i in self.priority_element:
+            tmp2=[i]
+            exec('tmp2 *='+i+'num')
+            tmp.extend(tmp2)
+            tmp2=[]
+        for i in self.unp_element:
+            tmp2=[i]
+            exec('tmp2 *='+i+'num')
+            tmp.extend(tmp2)
+            tmp2=[]
         self.dice_list=tmp
         del tmp
+        
         pass
 
-def default_character(player1):
-    if isinstance(player1,player):
-        player1.add_character('diluc')
-        player1.add_character('sucrose')
-        player1.add_character('kaeya')
+def default_character(playerx):
+    if isinstance(playerx,player):
+        playerx.add_character('diluc')
+        playerx.add_character('sucrose')
+        playerx.add_character('kaeya')
 
 def get_damage():
     pass
@@ -69,24 +105,29 @@ def check_game_end(player1,player2):
     return False,''
 
 def gameloop(a,player1,player2):
-    players=[player1,player2]
-    game_begin(players)
-    begin_phase(players)
+    game_begin(player1,player2)
+    begin_phase(player1,player2)
     pass
-def game_begin(players):
-    players[0].set_priority()
-    players[1].set_priority()
+def game_begin(player1,player2):
+    player1.set_priority()
+    player2.set_priority()
+    player1.set_unp()
+    player2.set_unp()
     #draw 5 cards(after)
     pass
-def begin_phase(players):
-    players[0].dice_list=data.roll_dice(8)
-    players[1].dice_list=data.roll_dice(8)
-    players[0].dice_sort()
-    players[1].dice_sort()
+def begin_phase(player1,player2):
+    player1.dice_list=data.roll_dice(8)
+    player2.dice_list=data.roll_dice(8)
     print('dice of player1: ',end='')
-    print(players[0].dice_list)
+    print(player1.dice_list)
     print('dice of player2: ',end='')
-    print(players[1].dice_list)
+    print(player2.dice_list)
+    player1.dice_sort()
+    player2.dice_sort()
+    print('dice of player1: ',end='')
+    print(player1.dice_list)
+    print('dice of player2: ',end='')
+    print(player2.dice_list)
     pass
 def action_phase_begin():
     pass
@@ -101,4 +142,3 @@ default_character(player1)
 player2=player()
 default_character(player2)
 gameloop(0,player1,player2)
-print(data.dice_kind)
