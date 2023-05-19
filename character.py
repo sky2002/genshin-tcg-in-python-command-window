@@ -65,20 +65,23 @@ class character:
         pass
 
 class diluc(character):
-    max_hp=10
-    max_energy=3
-    hp=10
-    energy=0
-    element='pyro'
-    weapon_type='claymore'
-    origin='mondstadt'
-    normal_attack_damage=2
-    normal_attack_type='physical'
-    elemental_skill_damage=3
-    elemental_skill_type='pyro'
     elemental_skill_times=0
-    elemental_burst_damage=8
-    elemental_burst_type='pyro'
+    
+    def __init__(self):
+        self.max_hp=10
+        self.max_energy=3
+        self.hp=10
+        self.energy=0
+        self.element='pyro'
+        self.weapon_type='claymore'
+        self.origin='mondstadt'
+        self.normal_attack_damage=2
+        self.normal_attack_type='physical'
+        self.elemental_skill_damage=3
+        self.elemental_skill_type='pyro'
+        self.elemental_skill_times=0
+        self.elemental_burst_damage=8
+        self.elemental_burst_type='pyro'
 
     def elemental_skill(self):
         self.set_energy(self.get_energy()+1)
@@ -96,19 +99,21 @@ class diluc(character):
         self.elemental_skill_times=0
         
 class sucrose(character):
-    max_hp=10
-    max_energy=2
-    hp=10
-    energy=0
-    element='anemo'
-    weapon_type='catalyst'
-    origin='mondstadt'
-    normal_attack_damage=1
-    normal_attack_type='anemo'
-    elemental_skill_damage=3
-    elemental_skill_type='anemo'
-    elemental_burst_damage=1
-    elemental_burst_type='anemo'
+    
+    def __init__(self):
+        self.max_hp=10
+        self.max_energy=2
+        self.hp=10
+        self.energy=0
+        self.element='anemo'
+        self.weapon_type='catalyst'
+        self.origin='mondstadt'
+        self.normal_attack_damage=1
+        self.normal_attack_type='anemo'
+        self.elemental_skill_damage=3
+        self.elemental_skill_type='anemo'
+        self.elemental_burst_damage=1
+        self.elemental_burst_type='anemo'
     
     def elemental_skill(self):
         self.set_energy(self.get_energy()+1)
@@ -120,19 +125,21 @@ class sucrose(character):
             return self.elemental_burst_damage,self.elemental_burst_type,'summon','large_wind_spirit'
     
 class kaeya(character):
-    max_hp=10
-    max_energy=2
-    hp=10
-    energy=0
-    element='cyro'
-    weapon_type='sword'
-    origin='mondstadt'
-    normal_attack_damage=2
-    normal_attack_type='physical'
-    elemental_skill_damage=3
-    elemental_skill_type='cyro'
-    elemental_burst_damage=1
-    elemental_burst_type='cyro'
+    
+    def __init__(self):
+        self.max_hp=10
+        self.max_energy=2
+        self.hp=10
+        self.energy=0
+        self.element='cyro'
+        self.weapon_type='sword'
+        self.origin='mondstadt'
+        self.normal_attack_damage=2
+        self.normal_attack_type='physical'
+        self.elemental_skill_damage=3
+        self.elemental_skill_type='cyro'
+        self.elemental_burst_damage=1
+        self.elemental_burst_type='cyro'
             
     def elemental_burst(self):
         if self.elemental_burst_available():

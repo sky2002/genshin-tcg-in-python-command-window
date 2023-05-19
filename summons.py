@@ -23,6 +23,11 @@ class large_wind_spirit(summon):
     usage=3
     element='anemo'
     damage=2
+    def __init__(self):
+        self.max_usage=3
+        self.usage=3
+        self.element='anemo'
+        self.damage=2
     def when_swirl(self,s_element):
         self.element=s_element
     def effect(self):

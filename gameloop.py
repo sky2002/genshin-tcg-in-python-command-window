@@ -25,8 +25,8 @@ class player:
         self.priority_element=[]
         self.unp_element=[]
     def add_character(self,char):
-        #if len(self.character_list)>=3:
-            #return
+        if len(self.character_list)>=3:
+            return
         if data.check_character(char):
             eval('self.character_list.append(character.'+char+'())')
     def clear_character(self):
@@ -59,7 +59,6 @@ class player:
                 self.unp_element.append(ele)
         self.unp_element.remove('omni')
     def dice_sort(self):
-        
         tmp=['omni']
         omninum=self.dice_list.count('omni')
         pyronum=self.dice_list.count('pyro')
@@ -82,8 +81,6 @@ class player:
             tmp2=[]
         self.dice_list=tmp
         del tmp
-        
-        pass
 
 def default_character(playerx):
     if isinstance(playerx,player):
@@ -118,17 +115,22 @@ def game_begin(player1,player2):
 def begin_phase(player1,player2):
     player1.dice_list=data.roll_dice(8)
     player2.dice_list=data.roll_dice(8)
-    print('dice of player1: ',end='')
-    print(player1.dice_list)
-    print('dice of player2: ',end='')
-    print(player2.dice_list)
     player1.dice_sort()
     player2.dice_sort()
     print('dice of player1: ',end='')
     print(player1.dice_list)
     print('dice of player2: ',end='')
     print(player2.dice_list)
-    pass
+    player1.dice_list=data.reroll_dice(player1.dice_list, 'player1')
+    player1.dice_sort()
+    print('dice of player1: ',end='')
+    print(player1.dice_list)
+    player2.dice_list=data.reroll_dice(player2.dice_list, 'player2')
+    player2.dice_sort()
+    print('dice of player2: ',end='')
+    print(player2.dice_list)
+    
+
 def action_phase_begin():
     pass
 def action_phase():
@@ -136,9 +138,9 @@ def action_phase():
 def end_phase():
     pass
 
-
-player1=player()
-default_character(player1)
-player2=player()
-default_character(player2)
-gameloop(0,player1,player2)
+if __name__=='__main__':
+    player1=player()
+    default_character(player1)
+    player2=player()
+    default_character(player2)
+    gameloop(0,player1,player2)
