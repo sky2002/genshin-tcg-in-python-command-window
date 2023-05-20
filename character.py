@@ -12,6 +12,12 @@ class character:
     elemental_skill_type=''
     elemental_burst_damage=0
     elemental_burst_type=''
+    status='alive'
+    ele_att=''
+    weapon=''
+    talent=''
+    artifact=''
+    name=''
     
     def __init__(self):
         self.max_hp=0
@@ -27,6 +33,12 @@ class character:
         self.elemental_skill_type=''
         self.elemental_burst_damage=0
         self.elemental_burst_type=''
+        self.status='alive'
+        self.ele_att=''
+        self.weapon=''
+        self.talent=''
+        self.artifact=''
+        self.name=''
     
     def set_hp(self,hp):
         self.hp=hp
@@ -82,6 +94,7 @@ class diluc(character):
         self.elemental_skill_times=0
         self.elemental_burst_damage=8
         self.elemental_burst_type='pyro'
+        self.name='diluc'
 
     def elemental_skill(self):
         self.set_energy(self.get_energy()+1)
@@ -114,6 +127,7 @@ class sucrose(character):
         self.elemental_skill_type='anemo'
         self.elemental_burst_damage=1
         self.elemental_burst_type='anemo'
+        self.name='sucrose'
     
     def elemental_skill(self):
         self.set_energy(self.get_energy()+1)
@@ -140,6 +154,7 @@ class kaeya(character):
         self.elemental_skill_type='cyro'
         self.elemental_burst_damage=1
         self.elemental_burst_type='cyro'
+        self.name='kaeya'
             
     def elemental_burst(self):
         if self.elemental_burst_available():

@@ -14,7 +14,8 @@ class player:
     dice_list=[]
     priority_element=[]
     unp_element=[]
-    def __init__(self):
+    name=''
+    def __init__(self,name):
         self.character_list=[]
         self.card_list=[]
         self.hold_card_list=[]
@@ -24,6 +25,7 @@ class player:
         self.dice_list=[]
         self.priority_element=[]
         self.unp_element=[]
+        self.name=name
     def add_character(self,char):
         if len(self.character_list)>=3:
             return
@@ -53,7 +55,6 @@ class player:
                 pass
             else:
                 self.priority_element.reverse()
-    def set_unp(self):
         for ele in data.dice_kind:
             if ele not in self.priority_element:
                 self.unp_element.append(ele)
@@ -108,8 +109,6 @@ def gameloop(a,player1,player2):
 def game_begin(player1,player2):
     player1.set_priority()
     player2.set_priority()
-    player1.set_unp()
-    player2.set_unp()
     #draw 5 cards(after)
     pass
 def begin_phase(player1,player2):
@@ -117,30 +116,77 @@ def begin_phase(player1,player2):
     player2.dice_list=data.roll_dice(8)
     player1.dice_sort()
     player2.dice_sort()
-    print('dice of player1: ',end='')
-    print(player1.dice_list)
-    print('dice of player2: ',end='')
-    print(player2.dice_list)
-    player1.dice_list=data.reroll_dice(player1.dice_list, 'player1')
+    print(player1.name+'\'s dice: ',end='')
+    for i in player1.dice_list:
+        print(i+', ',end='')
+    print('')
+    print(player2.name+'\'s dice: ',end='')
+    for i in player2.dice_list:
+        print(i+', ',end='')
+    print('')
+    player1.dice_list=data.reroll_dice(player1.dice_list, player1.name)
     player1.dice_sort()
-    print('dice of player1: ',end='')
-    print(player1.dice_list)
-    player2.dice_list=data.reroll_dice(player2.dice_list, 'player2')
+    print(player1.name+'\'s dice: ',end='')
+    for i in player1.dice_list:
+        print(i+', ',end='')
+    print('')
+    player2.dice_list=data.reroll_dice(player2.dice_list, player2.name)
     player2.dice_sort()
-    print('dice of player2: ',end='')
-    print(player2.dice_list)
-    
+    print(player2.name+'\'s dice: ',end='')
+    for i in player2.dice_list:
+        print(i+', ',end='')
+    print('')
+    print_scene(player1,player2)
+    print_scene(player2,player1)
 
 def action_phase_begin():
     pass
 def action_phase():
+    while(1>0):
+        
+        pass
     pass
 def end_phase():
     pass
 
+def print_scene(playerx,playery):
+    if isinstance(playerx,player)&isinstance(playery,player):
+        print('Your opponent: '+playery.name)
+        print('Dice remaining: '+str(len(playery.dice_list)))
+        print('Card remaining: '+str(len(playery.card_list)))
+        for i in playery.character_list:
+            print(i.name+': hp:'+str(i.hp)+', energy:'+str(i.energy),end='')
+            if i.weapon!='':
+                print(', weapon:'+i.weapon,end='')
+            if i.talent!='':
+                print(', talent:'+i.weapon,end='')
+            if i.artifact!='':
+                print(', artifact:'+i.weapon,end='')
+            print('')
+        print('')
+        print('Your name: '+playerx.name)
+        print('Your dice: ',end='')
+        for i in playerx.dice_list:
+            print(i+', ',end='')
+        print('('+str(len(playerx.dice_list))+')')
+        print('Your card: ',end='')
+        for i in playerx.card_list:
+            print(i+', ',end='')
+        print('')
+        for i in playerx.character_list:
+            print(i.name+': hp:'+str(i.hp)+', energy:'+str(i.energy),end='')
+            if i.weapon!='':
+                print(', weapon:'+i.weapon,end='')
+            if i.talent!='':
+                print(', talent:'+i.weapon,end='')
+            if i.artifact!='':
+                print(', artifact:'+i.weapon,end='')
+            print('')
+        print('')
+        
 if __name__=='__main__':
-    player1=player()
+    player1=player('xx')
     default_character(player1)
-    player2=player()
+    player2=player('yy')
     default_character(player2)
     gameloop(0,player1,player2)
